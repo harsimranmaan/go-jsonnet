@@ -1,0 +1,38 @@
+name: ci
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: sudo apt install python3-dev python3-setuptools
+      - run: pip install -U wheel
+      - run: pip install -U pytest setuptools
+      - run: make all
+      - name: Install goveralls
+        env:
+          GO111MODULE: off
+        run: |
+          export GOPATH=$GITHUB_WORKSPACE
+          go get github.com/mattn/goveralls
+      - name: Send coverage
+        env:
+          COVERALLS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./bin/goveralls -coverprofile=coverage.out -service=github
+
+  build-all:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: goreleaser
+        uses: goreleaser/goreleaser-action@v2
+        with:
+          args: release --snapshot --skip-publish --rm-dist
