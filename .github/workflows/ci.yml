@@ -16,15 +16,15 @@ jobs:
           - goVersion: "1"
             GOARCH: "amd64"
             SKIP_PYTHON_BINDINGS_TESTS: "0"
-          - goVersion: "1"
-            GOARCH: "arm64"
-            SKIP_PYTHON_BINDINGS_TESTS: "0"
-          - goVersion: "1"
-            GOARCH: "386"
-            SKIP_PYTHON_BINDINGS_TESTS: "1"
-          - goVersion: "1"
-            GOARCH: "ppc64le"
-            SKIP_PYTHON_BINDINGS_TESTS: "0"
+          # - goVersion: "1"
+          #   GOARCH: "arm64"
+          #   SKIP_PYTHON_BINDINGS_TESTS: "0"
+          # - goVersion: "1"
+          #   GOARCH: "386"
+          #   SKIP_PYTHON_BINDINGS_TESTS: "1"
+          # - goVersion: "1"
+          #   GOARCH: "ppc64le"
+          #   SKIP_PYTHON_BINDINGS_TESTS: "0"
           - goVersion: "1.11"
             GOARCH: "amd64"
             SKIP_PYTHON_BINDINGS_TESTS: "0"
@@ -47,7 +47,7 @@ jobs:
       - run: pip install -U wheel
       - run: pip install -U pytest setuptools
       - run: make install.dependencies
-      - run: test
+      - run: make test
         env:
           GOARCH: ${{ matrix.GOARCH }}
           CGO_ENABLED: "1"
