@@ -14,11 +14,9 @@ jobs:
         include:
           - goVersion: "1"
             GOARCH: "amd64"
-            CGO_ENABLED: "0"
             SKIP_PYTHON_BINDINGS_TESTS: "0"
           - goVersion: "1"
             GOARCH: "arm64"
-            CGO_ENABLED: "0"
             SKIP_PYTHON_BINDINGS_TESTS: "0"
           - goVersion: "1"
             GOARCH: "386"
@@ -26,23 +24,18 @@ jobs:
             SKIP_PYTHON_BINDINGS_TESTS: "1"
           - goVersion: "1"
             GOARCH: "ppc64le"
-            CGO_ENABLED: "0"
             SKIP_PYTHON_BINDINGS_TESTS: "0"
           - goVersion: "1.11"
             GOARCH: "amd64"
-            CGO_ENABLED: "0"
             SKIP_PYTHON_BINDINGS_TESTS: "0"
           - goVersion: "1.12"
             GOARCH: "amd64"
-            CGO_ENABLED: "0"
             SKIP_PYTHON_BINDINGS_TESTS: "0"
           - goVersion: "1.13"
             GOARCH: "amd64"
-            CGO_ENABLED: "0"
             SKIP_PYTHON_BINDINGS_TESTS: "0"
           - goVersion: "1.14"
             GOARCH: "amd64"
-            CGO_ENABLED: "0"
             SKIP_PYTHON_BINDINGS_TESTS: "0"
     runs-on: ubuntu-latest
     steps:
@@ -56,7 +49,7 @@ jobs:
       - run: ./tests.sh
         env:
           GOARCH: ${{ matrix.GOARCH }}
-          CGO_ENABLED: ${{ matrix.CGO_ENABLED }}
+          CGO_ENABLED: "1"
           SKIP_PYTHON_BINDINGS_TESTS: ${{ matrix.SKIP_PYTHON_BINDINGS_TESTS }}
 
   all:

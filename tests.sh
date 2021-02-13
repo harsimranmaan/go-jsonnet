@@ -7,7 +7,7 @@ JSONNET_CPP_DIR=${JSONNET_CPP_DIR:=$PWD/cpp-jsonnet}
 
 set -x
 
-go test -covermode atomic -coverprofile=coverage.out ./...
+go test -race -covermode atomic -coverprofile=coverage.out ./...
 
 if [ "$SKIP_PYTHON_BINDINGS_TESTS" == 1 ]
 then
