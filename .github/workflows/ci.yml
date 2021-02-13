@@ -20,7 +20,6 @@ jobs:
             SKIP_PYTHON_BINDINGS_TESTS: "0"
           - goVersion: "1"
             GOARCH: "386"
-            CGO_ENABLED: "1"
             SKIP_PYTHON_BINDINGS_TESTS: "1"
           - goVersion: "1"
             GOARCH: "ppc64le"
@@ -76,7 +75,7 @@ jobs:
         run: ./bin/goveralls -coverprofile=coverage.out -service=github
 
   goreleaser:
-    name: Build
+    name: Goreleaser
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
